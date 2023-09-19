@@ -1,20 +1,10 @@
-# see online ctypes documentation at http://docs.python.org/library/ctypes.html
-import ctypes
-
-
-# get a handle on our shared library:
-lib = ctypes.CDLL('../C++/euler.so')
-
-euler = lib.euler
-euler.argtypes = [ctypes.c_int]
-euler.restype = ctypes.c_double
-
+import euler # looks like a normal python package!
 
 if __name__ == '__main__':
     import sys
     if len(sys.argv) != 2:
-        print ("usage: python euler.py N")
+        print ("usage: python test.py N")
         sys.exit(1)
 
     iter = int(sys.argv[1])
-    print(f"e = {euler(iter)}")
+    print(f"e = {euler.euler(iter)}")

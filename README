@@ -7,12 +7,16 @@
 - Basic FFI
   - Shared libraries, manual lookup
     - `ctypes`
+    - I will be using Python, but this style is most
+      useful if you are providing bindings for multiple
+      languages
 
 - Language-specific tools (`Python.h`, `pybind11`, etc.)
 
 - Common concerns
   - Error handling
   - Cross-language memory management
+  - Converting between idioms (e.g. out parameters)
 
 - General frameworks (SWIG)
   - Powerful, but usually lower quality than something hand-written

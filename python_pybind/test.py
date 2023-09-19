@@ -1,3 +1,5 @@
+# this is identical to the test.py in the previous example (python_module)
+
 # this is just so we can find the built module
 import sys
 import os
