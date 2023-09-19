@@ -20,6 +20,7 @@ _compute.argtypes = [ctypes.c_void_p, _double_array, _double_array, ctypes.c_int
 
 _get_error_msg = lib.foo_error_get_message
 _get_error_msg.argtypes = [ctypes.c_void_p]
+_get_error_msg.restype = ctypes.c_char_p
 
 _error_destroy = lib.foo_destroy_error
 _error_destroy.argtypes = [ctypes.c_void_p]

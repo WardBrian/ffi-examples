@@ -1,31 +1,33 @@
 #pragma once
 // assume the following API, which is not under our control
 
+// it has the following notable features:
+// - it is object-oriented
+// - it uses exceptions for error handling
+// - it uses C++ STL containers in the API
+
 #include <vector>
 #include <stdexcept>
 
-class Frobulator
-{
-public:
-    Frobulator(int x, int y) : x_(x), y_(y) {}
+class Frobulator {
+ public:
+  Frobulator(int x, int y) : x_(x), y_(y) {}
 
-    std::vector<double> compute(const std::vector<double> &data) const
-    {
-        if (data.size() < 10)
-        {
-            throw std::runtime_error("not enough data");
-        }
-        // do something with data
-        std::vector<double> result;
-        result.reserve(data.size());
-        for (int i = 0; i < data.size(); ++i)
-        {
-            result[i] = i * i * data[i] + x_ + y_ * i;
-        }
-        return result;
+  std::vector<double> compute(const std::vector<double> &data) const {
+    if (data.size() < 10) {
+      throw std::runtime_error("not enough data");
     }
 
-private:
-    int x_;
-    int y_;
+    // do something with data
+    std::vector<double> result;
+    result.reserve(data.size());
+    for (int i = 0; i < data.size(); ++i) {
+      result[i] = i * i * data[i] + x_ + y_ * i;
+    }
+    return result;
+  }
+
+ private:
+  int x_;
+  int y_;
 };
