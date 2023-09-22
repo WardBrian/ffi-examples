@@ -3,7 +3,7 @@ euler.so: euler.c euler.h
 	$(CC) -shared -o euler.so -fPIC euler.c
 
 test: test.c euler.h euler.so
-	$(CC) -o test test.c euler.so -Wl,-rpath=.
+	$(CC) -o test test.c euler.so -Wl,-rpath=`pwd`
 
 .PHONY: clean
 clean:
