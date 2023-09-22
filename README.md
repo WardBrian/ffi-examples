@@ -17,20 +17,20 @@ and because it is the case which is the most similar between pairs of languages.
     - I will be using Python, but this style is most
       useful if you are providing bindings for multiple
       languages.
-      This style works in Python, Julia, R^[1], MATLAB, and likely more.
+      This style works in Python, Julia, R[^1], MATLAB, and likely more.
     - `ctypes`
 
-[1]: R has some extra weird limitations, but they're all things that you can work around if needed.
+[^1]: R has some extra weird limitations, but they're all things that you can work around if needed.
 
 - Language-specific options (`Python.h`, `pybind11`, etc.)
   - Can be more powerful or convienent, but really only work for one language at a time.
 
-- Common concerns^[2]
+- Common concerns[^2]
   - Error handling
   - Cross-language memory management
   - Converting between idioms (e.g. out parameters)
 
-[2]: Note that these are also concerns for API design generally, not just FFI.
+[^2]: Note that these are also concerns for API design generally, not just FFI.
 
 - General tools that do it all for you (SWIG, etc.)
   - Can be powerful!
