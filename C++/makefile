@@ -13,4 +13,4 @@ test_mangle: euler_mangle.so test.cpp ../C/euler.h
 
 .PHONY: clean
 clean:
-	$(RM) *.so test
+	$(RM) *.so test test_mangle

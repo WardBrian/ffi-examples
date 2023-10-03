@@ -28,8 +28,11 @@ Frobulator *foo_create_frobulator(int x, int y, foo_error **err) {
   } catch (std::exception &e) {
     if (err != nullptr)
       *err = new foo_error(strdup(e.what()));
-    return NULL;
+  } catch (...) {
+    if (err != nullptr)
+      *err = new foo_error(strdup("unknown error"));
   }
+  return NULL;
 }
 
 int foo_compute(const Frobulator *frobulator, const double *data,
@@ -43,8 +46,11 @@ int foo_compute(const Frobulator *frobulator, const double *data,
   } catch (std::exception &e) {
     if (err != nullptr)
       *err = new foo_error(strdup(e.what()));
-    return -1;
+  } catch (...) {
+    if (err != nullptr)
+      *err = new foo_error(strdup("unknown error"));
   }
+  return -1;
 }
 
 void foo_destroy_frobulator(Frobulator *frobulator) { delete frobulator; }

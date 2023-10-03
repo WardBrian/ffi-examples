@@ -2,4 +2,5 @@
 *.o
 *.so
 **/test
+**/test_mangle
 build/
