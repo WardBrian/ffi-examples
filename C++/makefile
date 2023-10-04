@@ -1,3 +1,4 @@
+all: euler.so euler_mangle.so
 
 euler.so: euler.cpp ../C/euler.c
 	$(CXX) -shared -o euler.so -fPIC euler.cpp
