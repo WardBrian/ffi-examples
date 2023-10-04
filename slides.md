@@ -19,11 +19,11 @@ note: best viewed using https://github.com/maaslalani/slides
 
 # First, some disclaimers
 
-- I will be **focusing** on the case of calling compiled code from a
+- I will be focusing on the case of calling compiled code from a
 higher-level language. This is because it is the more common (and useful) case,
 and because it is the case which is the most similar between pairs of languages.
 <br/>
-- I will also be primarily *using* Python as the higher-level language, but my emphasis
+- I will also be primarily using C++ and Python for demonstrations, but my emphasis
 will be on a style that works more broadly.
 
 ---
