@@ -3,7 +3,7 @@ import ctypes
 
 
 # get a handle on our shared library:
-lib = ctypes.CDLL('../C++/euler.so')
+lib = ctypes.CDLL("../C++-extern/euler.so")
 
 euler = lib.euler
 euler.argtypes = [ctypes.c_int]

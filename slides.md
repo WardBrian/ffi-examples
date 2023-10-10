@@ -43,7 +43,7 @@ To make this concrete, we will use the following code for most of the talk:
 
 ## Shared libraries
 
-A shared library is a file that contains compiled code that can be loaded into memory and executed by a program at runtime. These are also known as dynamic libraries or dynamic link libraries (DLLs) .
+A shared library is a file that contains compiled code that can be loaded into memory and executed by a program at runtime. These are also known as dynamic libraries or dynamic link libraries (DLLs).
 
 These are created when you pass `-fPIC -shared` to your compiler.
 
@@ -134,21 +134,21 @@ Wrapping our `euler` function is simple. We primarily need to tell Python where 
 # Method 1: Do it yourself with a generic library
 
 ## Pros
-  - Very simple
-  - A similar approach is available in most languages (at a minumum, Julia, R, MATLAB)
-  - You are ultimately just writing code *in the higher level language*
+  - Very simple!
+  - A similar approach is available in most languages (at a minimum, Julia, R, MATLAB).
+  - Same shared library can be re-used between languages.
+  - You are ultimately just writing code *in the higher level language*.
 
 ## Cons
-  - This can be a tedious process, especially if you have a lot of functions to wrap
+  - Writing stubs can be a tedious process, especially if you have a lot of functions to wrap*.
   - Library needs to be in a well-defined location, building it is on your own.
-
 
 ---
 
 # Method 2: Language-specific libraries
 
-Many languages have a way of writing compiled code
-which then exposes itself to the higher-level language.
+Many higher-level languages have a way of writing compiled code
+which then exposes itself as a library/module.
 
 In Python, this can be done with the API in the `Python.h` header.
 
@@ -175,18 +175,20 @@ In Python, this can be done with the API in the `Python.h` header.
 ## Pros
   - The built module is installed in the standard location for your language.
   - Build process is handled by the language's packaging system (this is also a con).
-  - Sometimes exposes more powerful features than the higher-level approach.
+  - Can leverage more powerful features or more native constructs (e.g., Python lists).
 
 ## Cons
-  - You need to learn the low-level API for your language
-    - This will end up looking very different in every language
+  - You need to learn the low-level API for your language.
+    - This will end up looking very different in every language. Heavy macro use and new 'gotchas'.
   - The same shared library can no longer be re-used between languages.
 
 ---
 
 # Method 3: Tools that try to do it for you
 
-Especially if you are only targetting a single language, tools exist to automate some or all of this. In Python, the most popular is `pybind11`.
+Especially if you are only targeting a single language, tools exist to automate some or all of this.
+
+In Python, the most popular is `pybind11`.
 
 
 ---
@@ -205,15 +207,16 @@ Especially if you are only targetting a single language, tools exist to automate
 
 # Method 3: Tools that try to do it for you
 
-The pros and cons from Method 2 also generally apply, plus
+The pros and cons from Method 2 also generally apply, plus:
 
 ## Pros
-  - Can be very concise
-  - May require annotation in your original code
+  - Can be very concise.
+  - May require annotation in your original code.
 
 ## Cons
-  - Can generate a lot of hard-to-read code (`SWIG` is known for this)
-  - Often specific to a single language-language pairing
+  - Can generate a lot of hard-to-read code (`SWIG` is known for this).
+  - Often specific to a single language-language pairing.
+
 
 ---
 
@@ -222,24 +225,54 @@ The pros and cons from Method 2 also generally apply, plus
 Regardless of your approach, there are a few things that come up often that our simple example didn't cover.
 
 
-1. Error handling accross languages
+1. Error handling across languages
 2. Memory management
 3. Making code "feel right" in the higher-level language
 
-### Demo: `real_world_concerns/`
+### Demo: `real_world_concerns/` (uses "Method 1")
 
 ---
 
 # So, what do I do?
 
-Ultimately, it will depend on your project.
 
-But remember what is really happening: some memory is being configured, and then a specific location in a shared library is being jumped to.
+All of these are using the same underlying machinery to actually load and call functions.
 
-If you can figure out how to do that, you can call your code from anywhere.
+Any 'magic' provided by one of these _must_ be possible with the others, it's just a question of how much effort it requires.
+
+Some memory is being configured and then a specific location in a shared library is being jumped to. If you can figure out how to do that in X, Y, or Z language, the rest is just engineering.
 
 <br/>
 
-I find a happy medium is tools like `clang2py` - this reads a C header and generates the `ctypes` boilerplate to call into a shared library with that API.
+I am always annoyed when a talk says 'there are tradeoffs to every solution', however...
+
+---
+
+# So, what do I do?
+
+*Personally*, I tend to start with "Method 1" and see how far it gets me.
+
+I find a happy medium are tools like `clang2py` - this reads a C header and generates the `ctypes` boilerplate to call into a shared library with that API.
 
 Turning that into a nice-to-use library is still up to you, but that's the part you probably want to control anyway.
+
+---
+
+# `exit()`
+
+<br/>
+
+<br/>
+
+Questions?
+
+<br/>
+
+<br/>
+
+
+### Repo: https://github.com/WardBrian/ffi-examples/tree/main
+
+### December XXth: Sciware on language interop
+
+

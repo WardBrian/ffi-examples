@@ -1,7 +1,9 @@
 #include <iostream>
 #include <iomanip>
 
+extern "C" {
 #include "../C/euler.h"
+}
 
 int main(int argc, char const *argv[]) {
   if (argc != 2) {
