@@ -1,4 +1,12 @@
-# Outline
+# FFI Examples
+
+## Requirements
+
+A C and C++ compiler, `make`, python with the pybind11 and numpy packages.
+
+The [slides](./slides.md) are best viewed with [slides](https://github.com/maaslalani/slides).
+
+## Outline
 
 I will be focusing on the case of calling compiled code from a
 higher-level language. This is because it is the more common (and useful) case,
@@ -23,7 +31,7 @@ and because it is the case which is the most similar between pairs of languages.
 [^1]: R has some extra weird limitations, but they're all things that you can work around if needed.
 
 - Language-specific options (`Python.h`, `pybind11`, etc.)
-  - Can be more powerful or convienent, but really only work for one language at a time.
+  - Can be more powerful or convenient, but really only work for one language at a time.
 
 - Common concerns[^2]
   - Error handling

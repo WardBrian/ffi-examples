@@ -271,8 +271,8 @@ Questions?
 <br/>
 
 
-### Repo: https://github.com/WardBrian/ffi-examples/tree/main
+### Repo: https://github.com/WardBrian/ffi-examples/
 
-### December XXth: Sciware on language interop
+### December 7th: Sciware
 
 
