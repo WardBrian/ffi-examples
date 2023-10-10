@@ -54,7 +54,7 @@ All of the ways we learn to call our code will involve loading it from a shared 
 
 ## Calling conventions and Linking
 
-- At a low level, all a function is is a place in memory where some code lives, and a name for that place.
+- At a low level, a function is only a place in memory where some code lives, and a name for that place.
 <br/>
 - Calling that function is "just" a matter of preparing memory in a certain way and then jumping to that place.
 <br/>
@@ -111,41 +111,7 @@ We will use this test file for all the examples:
 ```
 ---
 
-# Method 1: Do it yourself with a generic library
-
-Most languages have a way to load a shared library and call functions from it directly. In Python, this is provided by the standard library module `ctypes`.
-
----
-
-# Method 1: Do it yourself with a generic library
-
-Wrapping our `euler` function is simple. We primarily need to tell Python where to find our shared library, and what the types of the arguments and return value are.
-
-```python
-~~~cat python_ctypes/euler.py
-
-~~~
-```
-
-### Demo: `python_ctypes/`
-
----
-
-# Method 1: Do it yourself with a generic library
-
-## Pros
-  - Very simple!
-  - A similar approach is available in most languages (at a minimum, Julia, R, MATLAB).
-  - Same shared library can be re-used between languages.
-  - You are ultimately just writing code *in the higher level language*.
-
-## Cons
-  - Writing stubs can be a tedious process, especially if you have a lot of functions to wrap*.
-  - Library needs to be in a well-defined location, building it is on your own.
-
----
-
-# Method 2: Language-specific libraries
+# Method 1: Language-specific libraries
 
 Many higher-level languages have a way of writing compiled code
 which then exposes itself as a library/module.
@@ -155,7 +121,7 @@ In Python, this can be done with the API in the `Python.h` header.
 
 ---
 
-# Method 2: Language-specific libraries
+# Method 1: Language-specific libraries
 
 
 ```c
@@ -170,7 +136,7 @@ In Python, this can be done with the API in the `Python.h` header.
 
 ---
 
-# Method 2: Language-specific libraries
+# Method 1: Language-specific libraries
 
 ## Pros
   - The built module is installed in the standard location for your language.
@@ -184,7 +150,7 @@ In Python, this can be done with the API in the `Python.h` header.
 
 ---
 
-# Method 3: Tools that try to do it for you
+# Method 2: Tools that try to do it for you
 
 Especially if you are only targeting a single language, tools exist to automate some or all of this.
 
@@ -193,7 +159,7 @@ In Python, the most popular is `pybind11`.
 
 ---
 
-# Method 3: Tools that try to do it for you
+# Method 2: Tools that try to do it for you
 
 ```c++
 ~~~head -n16 python_pybind/euler_pybind.cpp
@@ -205,31 +171,73 @@ In Python, the most popular is `pybind11`.
 
 ---
 
-# Method 3: Tools that try to do it for you
+# Method 2: Tools that try to do it for you
 
-The pros and cons from Method 2 also generally apply, plus:
+The pros and cons from Method 1 also generally apply, plus:
 
 ## Pros
   - Can be very concise.
   - May require annotation in your original code.
 
 ## Cons
-  - Can generate a lot of hard-to-read code (`SWIG` is known for this).
+  - Can generate a lot of hard-to-read code (an older tool called `SWIG` garnered a reputation for this).
   - Often specific to a single language-language pairing.
-
 
 ---
 
-# Common "real world" concerns for FFI
+# Method 3: Do it yourself with a generic library
+
+Most languages have a way to load a shared library and call functions from it directly. In Python, this is provided by the standard library module `ctypes`.
+
+---
+
+# Method 3: Do it yourself with a generic library
+
+Wrapping our `euler` function is simple. We primarily need to tell Python where to find our shared library, and what the types of the arguments and return value are.
+
+```python
+~~~cat python_ctypes/euler.py
+
+~~~
+```
+
+### Demo: `python_ctypes/`
+
+---
+
+# Method 3: Do it yourself with a generic library
+
+## Pros
+  - Very simple!
+  - A similar approach is available in most languages (at a minimum, Julia, R, MATLAB).
+  - Same shared library can be re-used between languages.
+  - You are ultimately just writing code *in the higher level language*.
+
+## Cons
+  - Writing stubs can be a tedious process, especially if you have a lot of functions to wrap*.
+  - Library needs to be in a well-defined location, building it is on your own.
+
+---
+
+# Common "real world" concerns
 
 Regardless of your approach, there are a few things that come up often that our simple example didn't cover.
 
 
-1. Error handling across languages
-2. Memory management
-3. Making code "feel right" in the higher-level language
+A. Error handling across languages
 
-### Demo: `real_world_concerns/` (uses "Method 1")
+B. Memory management
+
+C. Making code "feel right" in the higher-level language
+
+### Demo: `real_world_concerns/` (uses "Method 3")
+
+```shell
+~~~tree real_world_concerns/ -I __pycache__ --noreport
+```
+
+~~~
+```
 
 ---
 
@@ -250,7 +258,7 @@ I am always annoyed when a talk says 'there are tradeoffs to every solution', ho
 
 # So, what do I do?
 
-*Personally*, I tend to start with "Method 1" and see how far it gets me.
+*Personally*, I tend to start with "Method 3" and see how far it gets me.
 
 I find a happy medium are tools like `clang2py` - this reads a C header and generates the `ctypes` boilerplate to call into a shared library with that API.
 

@@ -30,6 +30,7 @@ _error_destroy.restype = None
 
 import numpy as np
 
+# A. Error handling across languages
 def _handle_error(error_ptr):
     if error_ptr.contents:
         msg = _get_error_msg(error_ptr.contents).decode('utf-8') # copies the string
@@ -38,6 +39,7 @@ def _handle_error(error_ptr):
     else:
         return RuntimeError("Unknown error")
 
+# C. Making code "feel right" in the higher-level language
 class Frobulator:
     def __init__(self, x, y):
         err = ctypes.pointer(ctypes.c_void_p())
@@ -46,6 +48,7 @@ class Frobulator:
             raise _handle_error(err)
 
     def __del__(self):
+        # B. Memory management
         if hasattr(self, '_ptr') and self._ptr is not None:
             _frob_destroy(self._ptr)
 

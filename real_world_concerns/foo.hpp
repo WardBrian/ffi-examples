@@ -2,8 +2,8 @@
 // assume the following API, which is not under our control
 
 // it has the following notable features:
-// - it is object-oriented
 // - it uses exceptions for error handling
+// - it is object-oriented (though it would be easy to make it functional)
 // - it uses C++ STL containers in the API
 
 #include <vector>

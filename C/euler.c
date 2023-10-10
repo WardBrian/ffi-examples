@@ -5,7 +5,7 @@ double euler(int iter) {
   double f = 1;
 
   for (int i = 1; i < iter; i++) {
-    f *= (1.0 / i);
+    f /= i;
     if (f == 0) {
       break;
     }

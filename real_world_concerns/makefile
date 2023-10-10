@@ -5,3 +5,4 @@ libfoo.so: wrapfoo.cpp wrapfoo.h foo.hpp
 .PHONY: clean
 clean:
 	$(RM) libfoo.so
+	$(RM) -r __pycache__
