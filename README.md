@@ -1,5 +1,7 @@
 # FFI Examples
 
+This repo contains the slides and examples for my talk at the 2023 Flatiron Wide Annual Meeting (FWAM).
+
 ## Requirements
 
 A C and C++ compiler, `make`, python with the pybind11 and numpy packages.
