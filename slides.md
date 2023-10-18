@@ -210,7 +210,7 @@ Wrapping our `euler` function is simple. We primarily need to tell Python where 
 
 ## Pros
   - Very simple!
-  - A similar approach is available in most languages (Julia has `Libdl`, MATLAB has `loadlibrary`, R has `.C`* ).
+  - A similar approach is available in most languages (Julia has `Libdl`, MATLAB has `loadlibrary` and `calllib`, R has `.C`* ).
   - Same shared library can be re-used between languages.
   - You are ultimately just writing code *in the higher level language*.
 
