@@ -182,7 +182,7 @@ The pros and cons from Method 1 also generally apply, plus:
 ## Cons
   - May require annotation in your original code.
   - Can generate a lot of hard-to-read code (an older tool called `SWIG` garnered a reputation for this).
-  - Often specific to a single language-language pairing. `pybind11`, `Rcpp`, `CxxWrap.jl`, ...
+  - Often specific to a single language-language pairing. `pybind11`, `Rcpp`, `CxxWrap.jl`, `maturin`, ...
 
 ---
 
