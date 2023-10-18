@@ -141,12 +141,12 @@ In Python, this can be done with the API in the `Python.h` header.
 ## Pros
   - The built module is installed in the standard location for your language.
   - Build process is handled by the language's packaging system (this is also a con).
-  - Can leverage more powerful features or more native constructs (e.g., Python lists).
+  - Can leverage powerful features or more native constructs (e.g., Python lists).
 
 ## Cons
   - You need to learn the low-level API for your language.
     - This will end up looking very different in every language. Heavy macro use and new 'gotchas'.
-  - The same shared library can no longer be re-used between languages.
+  - The same shared library cannot be re-used between languages.
 
 ---
 
@@ -177,9 +177,10 @@ The pros and cons from Method 1 also generally apply, plus:
 
 ## Pros
   - Can be very concise.
-  - May require annotation in your original code.
+  - Can understand higher-level concepts like objects in the compiled language.
 
 ## Cons
+  - May require annotation in your original code.
   - Can generate a lot of hard-to-read code (an older tool called `SWIG` garnered a reputation for this).
   - Often specific to a single language-language pairing.
 
@@ -209,7 +210,7 @@ Wrapping our `euler` function is simple. We primarily need to tell Python where 
 
 ## Pros
   - Very simple!
-  - A similar approach is available in most languages (at a minimum, Julia, R, MATLAB).
+  - A similar approach is available in most languages (Julia has `Libdl`, MATLAB has `loadlibrary`, R has `.C`* ).
   - Same shared library can be re-used between languages.
   - You are ultimately just writing code *in the higher level language*.
 

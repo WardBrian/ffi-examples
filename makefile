@@ -12,6 +12,7 @@ clean:
 	$(MAKE) -C C clean
 	$(MAKE) -C C++ clean
 	$(MAKE) -C C++-extern clean
+	$(RM) -r python_ctypes/__pycache__
 	$(MAKE) -C python_module clean
 	$(MAKE) -C python_pybind clean
 	$(MAKE) -C real_world_concerns clean
