@@ -28,6 +28,17 @@ will be on a style that works more broadly.
 
 ---
 
+# Why do I need to call a foreign function?
+
+- System libraries
+
+<br/>
+
+- Accessible performance
+
+
+---
+
 # Running code example:
 
 To make this concrete, we will use the following code for most of the talk:
@@ -279,6 +290,7 @@ Questions?
 
 <br/>
 
+### Email: bward@flatironinstitute.org
 
 ### Repo: https://github.com/WardBrian/ffi-examples/
 
